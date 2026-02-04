@@ -1,0 +1,24 @@
+{
+  "name": "koh-ai-playground",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "scenario:agent": "tsx src/index.ts agent",
+    "scenario:rag": "tsx src/index.ts rag",
+    "scenario:multi": "tsx src/index.ts multi",
+    "scenario:workflow": "tsx src/index.ts workflow",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
