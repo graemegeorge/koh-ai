@@ -8,7 +8,7 @@ export function createDefaultToolRegistry() {
     name: "search_docs",
     description: "Searches product documentation snippets by keyword.",
     schema: z.object({ query: z.string().min(2) }),
-    run: async ({ query }) => {
+    run: async ({ query }: { query: string }) => {
       const docs = [
         "Usage limits are enforced per account and reset every hour.",
         "Escalations should include customer impact and urgency score.",
@@ -27,7 +27,15 @@ export function createDefaultToolRegistry() {
       durationMinutes: z.number().int().nonnegative(),
       hasDataLoss: z.boolean(),
     }),
-    run: async ({ customersAffected, durationMinutes, hasDataLoss }) => {
+    run: async ({
+      customersAffected,
+      durationMinutes,
+      hasDataLoss,
+    }: {
+      customersAffected: number;
+      durationMinutes: number;
+      hasDataLoss: boolean;
+    }) => {
       const score =
         customersAffected * 0.4 + durationMinutes * 0.3 + (hasDataLoss ? 30 : 0);
 

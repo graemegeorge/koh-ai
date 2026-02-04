@@ -8,13 +8,13 @@ export interface ToolDefinition<TInput extends Record<string, unknown> = Record<
 }
 
 export class ToolRegistry {
-  private readonly tools = new Map<string, ToolDefinition>();
+  private readonly tools = new Map<string, ToolDefinition<Record<string, unknown>>>();
 
-  register(tool: ToolDefinition): void {
-    this.tools.set(tool.name, tool);
+  register<TInput extends Record<string, unknown>>(tool: ToolDefinition<TInput>): void {
+    this.tools.set(tool.name, tool as ToolDefinition<Record<string, unknown>>);
   }
 
-  list(): ToolDefinition[] {
+  list(): ToolDefinition<Record<string, unknown>>[] {
     return [...this.tools.values()];
   }
 
